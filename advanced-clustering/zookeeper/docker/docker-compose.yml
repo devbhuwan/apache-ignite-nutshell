@@ -1,0 +1,10 @@
+version: '3'
+services:
+  zookeeper:
+    image: zookeeper:latest
+    container_name: zk
+    ports:
+      - '2181:2181'
+      - '2888:2888'
+      - '3888:3888'
+      

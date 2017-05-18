@@ -1,0 +1,5 @@
+apply plugin: ApacheIgniteDependencyPlugin
+
+dependencies{
+    compile("org.apache.ignite:ignite-zookeeper:$igniteVersion")
+}

@@ -1,0 +1,62 @@
+buildscript {
+
+    repositories {
+        mavenCentral()
+        mavenLocal()
+        jcenter()
+    }
+
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:$springBootVersion")
+    }
+}
+
+plugins {
+    id "io.spring.dependency-management" version "1.0.2.RELEASE"
+}
+
+allprojects {
+    apply plugin: 'idea'
+
+    repositories {
+        mavenCentral()
+        mavenLocal()
+        jcenter()
+        mavenRepoUrl.split(',').each { repoUrl -> maven { url repoUrl } }
+    }
+}
+
+ext {
+    gradleVersion = "3.4"
+}
+
+subprojects {
+    apply plugin: 'java'
+    apply plugin: 'maven'
+
+    sourceCompatibility = 1.8
+
+    compileJava {
+        options.encoding = 'UTF-8'
+    }
+
+    archivesBaseName = "poc-apache-ignite-${it.name}"
+
+    sourceSets {
+        test {
+            java.srcDirs = ['src/test/java', 'src/test/groovy']
+        }
+    }
+
+    dependencies {
+        compile("org.projectlombok:lombok:$lombokVersion")
+        compile("ch.qos.logback:logback-classic:$logbackVersion")
+        compile("org.apache.commons:commons-lang3:$commonLang3Version")
+
+        testCompile("junit:junit:$junitVersion")
+        testCompile("org.assertj:assertj-core:$assertjVersion")
+        compile("org.codehaus.groovy:groovy-all:$groovyAllVersion")
+        testCompile("org.spockframework:spock-core:$spockVersion")
+    }
+
+}
