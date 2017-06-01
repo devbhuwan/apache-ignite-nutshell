@@ -1,0 +1,12 @@
+ext {
+    appLibs = [:]
+    appPlugins = [:]
+}
+
+appLibs {
+
+}
+
+appPlugins {
+
+}

@@ -8,11 +8,13 @@ buildscript {
 
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:$springBootVersion")
+        classpath 'se.transmode.gradle:gradle-docker:1.2'
     }
 }
 
 plugins {
     id "io.spring.dependency-management" version "1.0.2.RELEASE"
+    id 'org.springframework.boot' version '1.5.3.RELEASE'
 }
 
 allprojects {
@@ -33,6 +35,7 @@ ext {
 subprojects {
     apply plugin: 'java'
     apply plugin: 'maven'
+    apply plugin: 'io.spring.dependency-management'
 
     sourceCompatibility = 1.8
 
@@ -40,7 +43,7 @@ subprojects {
         options.encoding = 'UTF-8'
     }
 
-    archivesBaseName = "poc-apache-ignite-${it.name}"
+    archivesBaseName = "apache-ignite-nutshell-${it.name}"
 
     sourceSets {
         test {

@@ -1,0 +1,5 @@
+apply plugin: ApacheIgniteZookeeperDependencyPlugin
+
+dependencies{
+    testCompile 'com.palantir.docker.compose:docker-compose-rule-junit4:0.32.0'
+}
