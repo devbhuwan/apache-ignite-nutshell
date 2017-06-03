@@ -3,5 +3,4 @@ apply plugin: ApacheIgniteZookeeperDependencyPlugin
 dependencies {
     compile project(":domain-model")
     testCompile project(":common-test")
-    testCompile "com.palantir.docker.compose:docker-compose-rule-junit4:$dockerComposeRuleJunit4Version"
 }
