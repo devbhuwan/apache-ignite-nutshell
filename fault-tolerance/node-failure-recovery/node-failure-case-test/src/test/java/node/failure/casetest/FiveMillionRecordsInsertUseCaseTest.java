@@ -18,7 +18,7 @@ import java.util.stream.IntStream;
 @Ignore
 public class FiveMillionRecordsInsertUseCaseTest {
 
-    private static final int FIVE_MILLION = 5000000;
+    private static final int FIVE_MILLION = 50;
 
     @BeforeClass
     public static void setup() {
