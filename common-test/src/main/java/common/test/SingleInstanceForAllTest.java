@@ -1,5 +1,8 @@
 package common.test;
 
+import com.palantir.docker.compose.DockerComposeRule;
+import com.palantir.docker.compose.connection.Container;
+import com.palantir.docker.compose.connection.DockerPort;
 import org.apache.ignite.Ignite;
 import org.apache.ignite.IgniteAtomicSequence;
 import org.apache.ignite.IgniteCache;
@@ -21,14 +24,22 @@ public enum SingleInstanceForAllTest {
     }
 
     private void igniteClientStart() {
-        PropertySetterForTest.INSTANCE.initExternalConfig();
         Ignition.setClientMode(true);
         ignite = Ignition.start("ignite-client-configuration.xml");
     }
 
     public void setup() {
         if (ignite == null) {
+            PropertySetterForTest.INSTANCE.initExternalConfig();
             igniteClientStart();
+        }
+    }
+
+    public void setupByDocker(DockerComposeRule docker) {
+        if (ignite == null) {
+            Container zkContainer = docker.containers().container("zk");
+            DockerPort dockerPort = zkContainer.port(2181);
+            PropertySetterForTest.INSTANCE.getModifiableEnv().put("zkConnection", dockerPort.getIp() + ":" + dockerPort.getExternalPort());
         }
     }
 

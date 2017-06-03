@@ -36,5 +36,8 @@ public enum PropertySetterForTest {
         }
     }
 
+    public Map<String, String> getModifiableEnv() {
+        return modifiableEnv;
+    }
 }
 
