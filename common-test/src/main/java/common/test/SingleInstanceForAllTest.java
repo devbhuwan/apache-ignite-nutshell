@@ -56,6 +56,15 @@ public enum SingleInstanceForAllTest {
         try {
             for (String name : names)
                 docker.containers().container(name).stop();
+            docker.containers().allContainers().forEach(this::printContainerState);
+        } catch (Exception e) {
+            throw new IllegalArgumentException(e);
+        }
+    }
+
+    private void printContainerState(Container container) {
+        try {
+            System.out.printf("Container [name=%s, state=%s, isUp=%s]\n---------------\n", container.getContainerName(), container.state(), container.state().isUp());
         } catch (Exception e) {
             throw new IllegalArgumentException(e);
         }
@@ -65,9 +74,11 @@ public enum SingleInstanceForAllTest {
         try {
             for (String name : names)
                 docker.containers().container(name).start();
+            docker.containers().allContainers().forEach(this::printContainerState);
         } catch (Exception e) {
             throw new IllegalArgumentException(e);
         }
+
     }
 
 }
