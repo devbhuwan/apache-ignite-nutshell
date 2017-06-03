@@ -6,7 +6,7 @@
 
     <bean id="batchCacheCfg" class="org.apache.ignite.configuration.CacheConfiguration">
         <property name="name" value="batchCache"/>
-        <!--<property name="backups" value="3"/>-->
+        <property name="backups" value="3"/>
         <property name="queryEntities">
             <list>
                 <bean class="org.apache.ignite.cache.QueryEntity">

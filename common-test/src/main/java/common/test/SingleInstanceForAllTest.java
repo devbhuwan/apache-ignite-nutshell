@@ -19,24 +19,24 @@ public enum SingleInstanceForAllTest {
     public static final String ZK_IGNITE_CLIENT_NODE = "zkIgniteClientNode";
     private volatile Ignite ignite;
 
-    private void igniteClientStart() {
+    private void igniteClientStart(String file) {
         Ignition.setClientMode(true);
-        ignite = Ignition.start("ignite-client-configuration.xml");
+        ignite = Ignition.start(file == null ? "ignite-client-configuration.xml" : file);
     }
 
-    public void setup() {
+    public void setup(String file) {
         if (ignite == null) {
             PropertySetterForTest.INSTANCE.initExternalConfig();
-            igniteClientStart();
+            igniteClientStart(file);
         }
     }
 
-    public void setupByDocker(DockerComposeRule docker) {
+    public void setupByDocker(DockerComposeRule docker, String file) {
         if (ignite == null) {
             Container zkContainer = docker.containers().container("zk");
             DockerPort dockerPort = zkContainer.port(2181);
             PropertySetterForTest.INSTANCE.getModifiableEnv().put("zkConnection", dockerPort.getIp() + ":" + dockerPort.getExternalPort());
-            igniteClientStart();
+            igniteClientStart(file);
         }
     }
 
@@ -52,5 +52,22 @@ public enum SingleInstanceForAllTest {
         return getIgnite().atomicSequence("batchSeq", 1000, true);
     }
 
+    public void stopContainers(DockerComposeRule docker, String... names) {
+        try {
+            for (String name : names)
+                docker.containers().container(name).stop();
+        } catch (Exception e) {
+            throw new IllegalArgumentException(e);
+        }
+    }
+
+    public void startContainers(DockerComposeRule docker, String... names) {
+        try {
+            for (String name : names)
+                docker.containers().container(name).start();
+        } catch (Exception e) {
+            throw new IllegalArgumentException(e);
+        }
+    }
 
 }
