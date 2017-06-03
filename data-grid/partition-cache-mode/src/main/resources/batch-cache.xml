@@ -6,7 +6,7 @@
 
     <bean id="batchCacheCfg" class="org.apache.ignite.configuration.CacheConfiguration">
         <property name="name" value="batchCache"/>
-        <property name="backups" value="3"/>
+        <!--<property name="backups" value="3"/>-->
         <property name="queryEntities">
             <list>
                 <bean class="org.apache.ignite.cache.QueryEntity">
@@ -15,7 +15,7 @@
 
                     <!-- Setting indexed type's value class -->
                     <property name="valueType"
-                              value="node.failure.casetest.model.Batch"/>
+                              value="domain.model.Batch"/>
 
                     <!-- Defining fields that will be either indexed or queryable.
                     Indexed fields are added to 'indexes' list below.-->

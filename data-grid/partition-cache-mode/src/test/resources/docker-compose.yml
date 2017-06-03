@@ -2,6 +2,8 @@ version: '3'
 services:
   zk:
     image: zookeeper
+    ports:
+      - 2181
   node1:
     image: io.github.devbhuwan/apache-ignite-nutshell-zk-ignite-node:1.0-SNAPSHOT
     environment:

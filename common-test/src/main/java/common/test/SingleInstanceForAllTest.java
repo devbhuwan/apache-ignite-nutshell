@@ -19,10 +19,6 @@ public enum SingleInstanceForAllTest {
     public static final String ZK_IGNITE_CLIENT_NODE = "zkIgniteClientNode";
     private volatile Ignite ignite;
 
-    SingleInstanceForAllTest() {
-        igniteClientStart();
-    }
-
     private void igniteClientStart() {
         Ignition.setClientMode(true);
         ignite = Ignition.start("ignite-client-configuration.xml");
@@ -40,6 +36,7 @@ public enum SingleInstanceForAllTest {
             Container zkContainer = docker.containers().container("zk");
             DockerPort dockerPort = zkContainer.port(2181);
             PropertySetterForTest.INSTANCE.getModifiableEnv().put("zkConnection", dockerPort.getIp() + ":" + dockerPort.getExternalPort());
+            igniteClientStart();
         }
     }
 

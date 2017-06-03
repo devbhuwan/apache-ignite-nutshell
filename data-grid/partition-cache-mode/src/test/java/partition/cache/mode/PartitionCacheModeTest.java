@@ -1,10 +1,8 @@
 package partition.cache.mode;
 
-import com.palantir.docker.compose.DockerComposeRule;
 import domain.model.Batch;
 import org.apache.ignite.cache.query.SqlFieldsQuery;
 import org.junit.BeforeClass;
-import org.junit.ClassRule;
 import org.junit.Test;
 
 import java.time.LocalDate;
@@ -22,14 +20,9 @@ public class PartitionCacheModeTest {
 
     private static final int FIVE_MILLION = 5000;
 
-    @ClassRule
-    public static DockerComposeRule docker = DockerComposeRule.builder()
-            .file("src/test/resources/docker-compose.yml")
-            .build();
-
     @BeforeClass
     public static void setup() {
-        INSTANCE.setupByDocker(docker);
+        INSTANCE.setup();
     }
 
     @Test

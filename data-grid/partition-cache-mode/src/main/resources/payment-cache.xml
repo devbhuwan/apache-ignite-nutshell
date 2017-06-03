@@ -10,11 +10,11 @@
             <list>
                 <bean class="org.apache.ignite.cache.QueryEntity">
                     <!-- Setting indexed type's key class -->
-                    <property name="keyType" value="node.failure.casetest.model.PaymentKey"/>
+                    <property name="keyType" value="domain.model.PaymentKey"/>
 
                     <!-- Setting indexed type's value class -->
                     <property name="valueType"
-                              value="node.failure.casetest.model.Payment"/>
+                              value="domain.model.Payment"/>
 
                     <!-- Defining fields that will be either indexed or queryable.
                     Indexed fields are added to 'indexes' list below.-->
