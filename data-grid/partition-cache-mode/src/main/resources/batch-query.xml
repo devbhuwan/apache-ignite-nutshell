@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="batchQueryEntity" class="org.apache.ignite.cache.QueryEntity">
+        <!-- Setting indexed type's key class -->
+        <property name="keyType" value="java.lang.Long"/>
+
+        <!-- Setting indexed type's value class -->
+        <property name="valueType"
+                  value="domain.model.Batch"/>
+
+        <!-- Defining fields that will be either indexed or queryable.
+        Indexed fields are added to 'indexes' list below.-->
+        <property name="fields">
+            <map>
+                <entry key="batchId" value="java.lang.Long"/>
+                <entry key="batchDescription" value="java.lang.String"/>
+                <entry key="settlementDate" value="java.time.LocalDate"/>
+            </map>
+        </property>
+
+        <!-- Defining indexed fields.-->
+        <property name="indexes">
+            <list>
+                <!-- Single field (aka. column) index -->
+                <bean class="org.apache.ignite.cache.QueryIndex">
+                    <constructor-arg value="batchId"/>
+                </bean>
+            </list>
+        </property>
+    </bean>
+
+</beans>

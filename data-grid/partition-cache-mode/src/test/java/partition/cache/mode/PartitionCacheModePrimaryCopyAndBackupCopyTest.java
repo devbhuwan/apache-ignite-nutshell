@@ -1,6 +1,7 @@
 package partition.cache.mode;
 
 import com.palantir.docker.compose.DockerComposeRule;
+import common.test.PropertySetterForTest;
 import domain.model.Batch;
 import org.apache.ignite.cache.query.SqlFieldsQuery;
 import org.junit.BeforeClass;
@@ -29,6 +30,7 @@ public class PartitionCacheModePrimaryCopyAndBackupCopyTest {
 
     @BeforeClass
     public static void setup() {
+        PropertySetterForTest.INSTANCE.getModifiableEnv().put("noOfBackups", "1");
         INSTANCE.setupByDocker(docker, "primary-cache-mode-backups-ignite-client-configuration.xml");
         IntStream.range(0, FIVE_MILLION).forEach(PartitionCacheModePrimaryCopyAndBackupCopyTest::persistBatch);
     }

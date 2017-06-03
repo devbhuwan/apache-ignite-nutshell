@@ -4,8 +4,8 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <import resource="batch-cache.xml"/>
-    <import resource="payment-cache.xml"/>
+    <import resource="batch-query.xml"/>
+    <import resource="payment-query.xml"/>
 
     <bean id="ignite.cfg" class="org.apache.ignite.configuration.IgniteConfiguration">
         <property name="igniteInstanceName" value="zkIgniteClientNode"/>
@@ -13,8 +13,24 @@
 
         <property name="cacheConfiguration">
             <list>
-                <ref bean="batchCacheCfg"/>
-                <ref bean="paymentCacheCfg"/>
+                <bean id="batchCacheCfg" class="org.apache.ignite.configuration.CacheConfiguration">
+                    <property name="name" value="batchCache"/>
+                    <property name="backups" value="#{systemEnvironment['noOfBackups']}"/>
+                    <property name="queryEntities">
+                        <list>
+                            <ref bean="batchQueryEntity"/>
+                        </list>
+                    </property>
+                </bean>
+                <bean id="paymentCacheCfg" class="org.apache.ignite.configuration.CacheConfiguration">
+                    <property name="name" value="paymentCache"/>
+                    <property name="backups" value="#{systemEnvironment['noOfBackups']}"/>
+                    <property name="queryEntities">
+                        <list>
+                            <ref bean="paymentQueryEntity"/>
+                        </list>
+                    </property>
+                </bean>
             </list>
         </property>
 
