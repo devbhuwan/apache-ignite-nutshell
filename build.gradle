@@ -9,13 +9,16 @@ buildscript {
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:$springBootVersion")
         classpath 'se.transmode.gradle:gradle-docker:1.2'
+        classpath 'com.wiredforcode:gradle-heroku-plugin:1.0.0'
     }
 }
 
 plugins {
     id "io.spring.dependency-management" version "1.0.2.RELEASE"
-    id 'org.springframework.boot' version '1.5.3.RELEASE'
+    id "com.heroku.sdk.heroku-gradle" version "0.2.0"
 }
+
+apply from: "$rootDir/gradle/dependencies.gradle"
 
 allprojects {
     apply plugin: 'idea'
@@ -26,10 +29,6 @@ allprojects {
         jcenter()
         mavenRepoUrl.split(',').each { repoUrl -> maven { url repoUrl } }
     }
-}
-
-ext {
-    gradleVersion = "3.4"
 }
 
 subprojects {
@@ -52,14 +51,14 @@ subprojects {
     }
 
     dependencies {
-        compile("org.projectlombok:lombok:$lombokVersion")
-        compile("ch.qos.logback:logback-classic:$logbackVersion")
-        compile("org.apache.commons:commons-lang3:$commonLang3Version")
+        compile("$appLibs.lombok")
+        compile("$appLibs.logbackClassic")
+        compile("$appLibs.commonLang3")
 
-        testCompile("junit:junit:$junitVersion")
-        testCompile("org.assertj:assertj-core:$assertjVersion")
-        compile("org.codehaus.groovy:groovy-all:$groovyAllVersion")
-        testCompile("org.spockframework:spock-core:$spockVersion")
+        testCompile("$appLibs.junit")
+        testCompile("$appLibs.assertj")
+        compile("$appLibs.groovyAll")
+        testCompile("$appLibs.spockCore")
     }
 
 }

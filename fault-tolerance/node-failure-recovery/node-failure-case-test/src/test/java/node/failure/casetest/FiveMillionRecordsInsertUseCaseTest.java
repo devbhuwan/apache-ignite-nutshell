@@ -5,6 +5,7 @@ import org.apache.ignite.IgniteAtomicSequence;
 import org.apache.ignite.IgniteCache;
 import org.apache.ignite.Ignition;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.time.LocalDate;
@@ -14,6 +15,7 @@ import java.util.stream.IntStream;
  * @author Bhuwan Upadhyay
  * @date 2017/06/01
  */
+@Ignore
 public class FiveMillionRecordsInsertUseCaseTest {
 
     private static final int FIVE_MILLION = 5000000;

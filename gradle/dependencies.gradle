@@ -3,10 +3,16 @@ ext {
     appPlugins = [:]
 }
 
-appLibs {
+appLibs += [
+        lombok        : "org.projectlombok:lombok:$lombokVersion",
+        logbackClassic: "ch.qos.logback:logback-classic:$logbackVersion",
+        commonLang3   : "org.apache.commons:commons-lang3:$commonLang3Version",
+        junit         : "junit:junit:$junitVersion",
+        assertj       : "org.assertj:assertj-core:$assertjVersion",
+        groovyAll     : "org.codehaus.groovy:groovy-all:$groovyAllVersion",
+        spockCore     : "org.spockframework:spock-core:$spockVersion"
+]
 
-}
+appPlugins += [
 
-appPlugins {
-
-}
+]
