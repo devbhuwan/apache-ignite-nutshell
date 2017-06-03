@@ -1,10 +1,11 @@
 rootProject.name = 'apache-ignite-nutshell'
+include 'domain-model'
+include 'common-test'
+include 'zk-ignite-node'
+include 'data-grid:partition-cache-mode'
+findProject(':data-grid:partition-cache-mode')?.name = 'partition-cache-mode'
+
 include 'advanced-clustering:zookeeper:ignite-nodes-registration-zk'
 findProject(':advanced-clustering:zookeeper:ignite-nodes-registration-zk')?.name = 'ignite-nodes-registration-zk'
 include 'advanced-clustering:zookeeper:ignite-nodes-discovery-using-zk'
 findProject(':advanced-clustering:zookeeper:ignite-nodes-discovery-using-zk')?.name = 'ignite-nodes-discovery-using-zk'
-include 'fault-tolerance:node-failure-recovery:zk-ignite-node'
-findProject(':fault-tolerance:node-failure-recovery:zk-ignite-node')?.name = 'zk-ignite-node'
-include 'fault-tolerance:node-failure-recovery:node-failure-case-test'
-findProject(':fault-tolerance:node-failure-recovery:node-failure-case-test')?.name = 'node-failure-case-test'
-
