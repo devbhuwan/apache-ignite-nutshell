@@ -1,0 +1,24 @@
+version: '3'
+services:
+  node1:
+    image: io.github.devbhuwan/apache-ignite-nutshell-zk-ignite-node:1.0-SNAPSHOT
+    environment:
+      - zkConnection=zk:2181
+    links:
+      - zk
+  node2:
+    image: io.github.devbhuwan/apache-ignite-nutshell-zk-ignite-node:1.0-SNAPSHOT
+    environment:
+      - zkConnection=zk:2181
+    links:
+      - zk
+  node3:
+    image: io.github.devbhuwan/apache-ignite-nutshell-zk-ignite-node:1.0-SNAPSHOT
+    environment:
+      - zkConnection=zk:2181
+    links:
+      - zk
+  zk:
+    image: zookeeper
+    ports:
+      - 2181

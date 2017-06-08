@@ -31,6 +31,7 @@ allprojects {
     }
 }
 
+
 subprojects {
     apply plugin: 'java'
     apply plugin: 'maven'
@@ -45,6 +46,11 @@ subprojects {
     archivesBaseName = "apache-ignite-nutshell-${it.name}"
 
     sourceSets {
+        main {
+            resources {
+                srcDirs = ['src/main/resources', "$project.rootDir/domain-model/src/main/resources"]
+            }
+        }
         test {
             java.srcDirs = ['src/test/java', 'src/test/groovy']
         }

@@ -4,6 +4,9 @@ include 'common-test'
 include 'zk-ignite-node'
 include 'data-grid:partition-cache-mode'
 findProject(':data-grid:partition-cache-mode')?.name = 'partition-cache-mode'
+include 'data-grid:replicated-cache-mode'
+findProject(':data-grid:replicated-cache-mode')?.name = 'replicated-cache-mode'
+
 
 include 'advanced-clustering:zookeeper:ignite-nodes-registration-zk'
 findProject(':advanced-clustering:zookeeper:ignite-nodes-registration-zk')?.name = 'ignite-nodes-registration-zk'

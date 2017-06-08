@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <import resource="batch-query.xml"/>
+    <import resource="payment-query.xml"/>
+
+    <bean id="ignite.cfg" class="org.apache.ignite.configuration.IgniteConfiguration">
+        <property name="igniteInstanceName" value="zkIgniteClientNode"/>
+        <property name="clientMode" value="true"/>
+
+        <property name="cacheConfiguration">
+            <list>
+                <bean id="batchCacheCfg" class="org.apache.ignite.configuration.CacheConfiguration">
+                    <property name="name" value="batchCache"/>
+                    <property name="cacheMode" value="REPLICATED"/>
+                    <property name="queryEntities">
+                        <list>
+                            <ref bean="batchQueryEntity"/>
+                        </list>
+                    </property>
+                </bean>
+                <bean id="paymentCacheCfg" class="org.apache.ignite.configuration.CacheConfiguration">
+                    <property name="name" value="paymentCache"/>
+                    <property name="cacheMode" value="REPLICATED"/>
+                    <property name="queryEntities">
+                        <list>
+                            <ref bean="paymentQueryEntity"/>
+                        </list>
+                    </property>
+                </bean>
+            </list>
+        </property>
+
+        <property name="discoverySpi">
+            <bean class="org.apache.ignite.spi.discovery.tcp.TcpDiscoverySpi">
+                <property name="ipFinder">
+                    <bean class="org.apache.ignite.spi.discovery.tcp.ipfinder.zk.TcpDiscoveryZookeeperIpFinder">
+                        <property name="zkConnectionString" value="#{systemEnvironment['zkConnection']}"/>
+                    </bean>
+                </property>
+            </bean>
+        </property>
+    </bean>
+
+</beans>

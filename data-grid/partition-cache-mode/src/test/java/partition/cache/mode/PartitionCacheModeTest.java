@@ -19,7 +19,7 @@ import static org.junit.Assert.assertEquals;
  * @author Bhuwan Upadhyay
  * @date 2017/06/03
  */
-public class PartitionCacheModePrimaryCopyAndBackupCopyTest {
+public class PartitionCacheModeTest {
 
     private static final int FIVE_MILLION = 50000;
 
@@ -31,8 +31,8 @@ public class PartitionCacheModePrimaryCopyAndBackupCopyTest {
     @BeforeClass
     public static void setup() {
         PropertySetterForTest.INSTANCE.getModifiableEnv().put("noOfBackups", "2");
-        INSTANCE.setupByDocker(docker, "primary-cache-mode-backups-ignite-client-configuration.xml");
-        IntStream.range(0, FIVE_MILLION).forEach(PartitionCacheModePrimaryCopyAndBackupCopyTest::persistBatch);
+        INSTANCE.setupByDocker(docker, "primary-cache-mode.xml");
+        IntStream.range(0, FIVE_MILLION).forEach(PartitionCacheModeTest::persistBatch);
     }
 
     private static void persistBatch(int i) {
