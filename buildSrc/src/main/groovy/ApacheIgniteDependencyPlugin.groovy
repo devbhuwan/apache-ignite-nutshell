@@ -14,6 +14,9 @@ class ApacheIgniteDependencyPlugin implements Plugin<Project> {
             compile "org.apache.ignite:ignite-core:${project.igniteVersion}"
             compile "org.apache.ignite:ignite-indexing:${project.igniteVersion}"
             compile "org.apache.ignite:ignite-spring:${project.igniteVersion}"
+            compile "org.apache.ignite:ignite-visor-console:${project.igniteVersion}"
+            compile "org.apache.ignite:ignite-ssh:${project.igniteVersion}"
+            compile "org.apache.ignite:ignite-log4j:${project.igniteVersion}"
         }
 
     }

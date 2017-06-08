@@ -21,7 +21,7 @@ import static org.junit.Assert.assertEquals;
  */
 public class PartitionCacheModePrimaryCopyAndBackupCopyTest {
 
-    private static final int FIVE_MILLION = 5000;
+    private static final int FIVE_MILLION = 50000;
 
     @ClassRule
     public static DockerComposeRule docker = DockerComposeRule.builder()
@@ -30,7 +30,7 @@ public class PartitionCacheModePrimaryCopyAndBackupCopyTest {
 
     @BeforeClass
     public static void setup() {
-        PropertySetterForTest.INSTANCE.getModifiableEnv().put("noOfBackups", "1");
+        PropertySetterForTest.INSTANCE.getModifiableEnv().put("noOfBackups", "2");
         INSTANCE.setupByDocker(docker, "primary-cache-mode-backups-ignite-client-configuration.xml");
         IntStream.range(0, FIVE_MILLION).forEach(PartitionCacheModePrimaryCopyAndBackupCopyTest::persistBatch);
     }

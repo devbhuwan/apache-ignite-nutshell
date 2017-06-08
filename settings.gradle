@@ -9,3 +9,5 @@ include 'advanced-clustering:zookeeper:ignite-nodes-registration-zk'
 findProject(':advanced-clustering:zookeeper:ignite-nodes-registration-zk')?.name = 'ignite-nodes-registration-zk'
 include 'advanced-clustering:zookeeper:ignite-nodes-discovery-using-zk'
 findProject(':advanced-clustering:zookeeper:ignite-nodes-discovery-using-zk')?.name = 'ignite-nodes-discovery-using-zk'
+include 'visor-console'
+
