@@ -11,6 +11,7 @@ appLibs += [
         assertj                         : "org.assertj:assertj-core:$assertjVersion",
         groovyAll                       : "org.codehaus.groovy:groovy-all:$groovyAllVersion",
         spockCore                       : "org.spockframework:spock-core:$spockVersion",
+        apacheIgniteCompatibleJetty: "org.eclipse.jetty:jetty-server:$jettyVersion",
         apacheIgniteCompatibleH2Database: "com.h2database:h2:$h2DatabaseVersion"
 ]
 

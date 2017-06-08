@@ -13,4 +13,3 @@ findProject(':advanced-clustering:zookeeper:ignite-nodes-registration-zk')?.name
 include 'advanced-clustering:zookeeper:ignite-nodes-discovery-using-zk'
 findProject(':advanced-clustering:zookeeper:ignite-nodes-discovery-using-zk')?.name = 'ignite-nodes-discovery-using-zk'
 include 'visor-console'
-

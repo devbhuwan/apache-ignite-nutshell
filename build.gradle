@@ -10,6 +10,7 @@ buildscript {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:$springBootVersion")
         classpath 'se.transmode.gradle:gradle-docker:1.2'
         classpath 'com.wiredforcode:gradle-heroku-plugin:1.0.0'
+        classpath 'com.github.rholder:gradle-one-jar:1.0.4'
     }
 }
 
@@ -42,6 +43,8 @@ subprojects {
     compileJava {
         options.encoding = 'UTF-8'
     }
+
+    ext['org.eclipse.jetty'] = "$jettyVersion"
 
     archivesBaseName = "apache-ignite-nutshell-${it.name}"
 

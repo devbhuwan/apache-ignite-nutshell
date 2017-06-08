@@ -1,5 +1,11 @@
-apply plugin: ApacheIgniteZookeeperDependencyPlugin
+apply plugin: ApacheIgniteVisorDependencyPlugin
+apply plugin: 'gradle-one-jar'
 
 dependencies {
     compile project(":common-test")
+}
+
+task fullJar(type: OneJar) {
+    mainClass = 'ApacheIgniteVisorConsole'
+    archiveName = 'full-' + jar.archiveName
 }

@@ -1,4 +1,4 @@
-apply plugin: ApacheIgniteZookeeperDependencyPlugin
+apply plugin: ApacheIgniteNodeDependencyPlugin
 apply plugin: 'org.springframework.boot'
 apply plugin: 'docker'
 

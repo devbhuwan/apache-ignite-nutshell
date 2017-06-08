@@ -4,11 +4,17 @@ services:
     image: io.github.devbhuwan/apache-ignite-nutshell-zk-ignite-node:1.0-SNAPSHOT
     environment:
       - zkConnection=209.177.91.59:12181
+    ports:
+      - 8000
   node2:
-      image: io.github.devbhuwan/apache-ignite-nutshell-zk-ignite-node:1.0-SNAPSHOT
-      environment:
-        - zkConnection=209.177.91.59:12181
+    image: io.github.devbhuwan/apache-ignite-nutshell-zk-ignite-node:1.0-SNAPSHOT
+    environment:
+      - zkConnection=209.177.91.59:12181
+    ports:
+      - 8000
   node3:
-      image: io.github.devbhuwan/apache-ignite-nutshell-zk-ignite-node:1.0-SNAPSHOT
-      environment:
-        - zkConnection=209.177.91.59:12181
+    image: io.github.devbhuwan/apache-ignite-nutshell-zk-ignite-node:1.0-SNAPSHOT
+    environment:
+      - zkConnection=209.177.91.59:12181
+    ports:
+      - 8000
