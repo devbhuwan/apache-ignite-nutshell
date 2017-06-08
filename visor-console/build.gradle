@@ -1,0 +1,5 @@
+apply plugin: ApacheIgniteZookeeperDependencyPlugin
+
+dependencies {
+    compile project(":common-test")
+}
